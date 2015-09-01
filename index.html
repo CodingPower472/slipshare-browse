@@ -18,7 +18,6 @@
           <button ng-click="reset()" ng-show="applied" class="btn btn-danger">Reset</button>
           <tr>
             <td>
-              <input type="checkbox" ng-model="selectAll" ng-change="selectAllChange()">
             </td>
             <td ng-repeat="field in fields">
               <input type="number" ng-model="inputRow[field.val]" ng-change="setField(field)" ng-show="field.changable">
@@ -27,7 +26,7 @@
           
           <tr ng-repeat="slipcategory in editedslipcategories">
             <td>
-              <input type="checkbox" ng-model="editedslipcategories[$index].checked" ng-change="selectChange(slipcategory)">
+              <input type="checkbox" ng-model="editedslipcategories[$index].checked">
             </td>
 
             <td ng-repeat="field in fields">

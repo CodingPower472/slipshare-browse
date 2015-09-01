@@ -41,45 +41,9 @@ function MainController($scope, slips) {
     }
   ];
 
-  $scope.checkedInputsLen = 0;
-
-  $scope.slipcategoriesLen = $scope.slipcategories.length;
-
-  $scope.selectAllChange = function () {
-
-    var selectAll = $scope.selectAll;
-
-    angular.forEach($scope.slipcategories, function (slipcategory) {
-
-      slipcategory.checked = selectAll;
-
-      selectAll === true ? $scope.checkedInputsLen++ : void 0;
-
-    });
-
-  };
-
   $scope.reset = function () {
 
     $scope.editedslipcategories = $scope.slipcategories;
-
-  };
-
-  $scope.selectChange = function (slipcategory) {
-
-    if (slipcategory.checked === true) {
-      $scope.checkedInputsLen++;
-    } else {
-      $scope.checkedInputsLen--;
-    }
-
-    console.log($scope.checkedInputsLen, $scope.slipcategoriesLen)
-
-    if ($scope.checkedInputsLen === $scope.slipcategoriesLen) {
-      $scope.selectAll = true;
-    } else {
-      $scope.selectAll = false;
-    }
 
   };
 
