@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="slipshareV2">
+<head>
+  <title>SlipShare</title>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap-theme.min.css">
+</head>
+<body>
+  <div class="container" ng-controller="MainController">
+    <h1>SlipShare</h1>
+    <form ng-submit="submit()" novalidate>
+      <table class="table">
+        <thead>
+          <th>Select</th>
+          <th ng-repeat="field in fields">{{ field.name }}</th>
+        </thead>
+        <tbody>
+          <button ng-click="reset()" ng-show="applied" class="btn btn-danger">Reset</button>
+          <tr>
+            <td>
+              <input type="checkbox" ng-model="selectAll" ng-change="selectAllChange()">
+            </td>
+            <td ng-repeat="field in fields">
+              <input type="number" ng-model="inputRow[field.val]" ng-change="setField(field)" ng-show="field.changable">
+            </td>
+          </tr>
+          
+          <tr ng-repeat="slipcategory in editedslipcategories">
+            <td>
+              <input type="checkbox" ng-model="editedslipcategories[$index].checked" ng-change="selectChange(slipcategory)">
+            </td>
+
+            <td ng-repeat="field in fields">
+              <input type="number" ng-hide="field.applied || !field.changable" ng-value="slipcategory[field.val]">
+              <p ng-show="field.applied || !field.changable">{{ slipcategory[field.val] }} {{ field.unit }}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <input type="submit" class="btn btn-primary">
+    </form>
+  </div>
+</body>
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<script src="lib/firebase/firebase.js"></script>
+<script src="lib/angular/angular.min.js"></script>
+<script src="lib/angularfire/dist/angularfire.min.js"></script>
+<script src="js/main.js"></script>
+</html>
